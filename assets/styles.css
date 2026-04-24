@@ -418,7 +418,7 @@ h3 { font-size: 1.2rem; }
 .site-footer p { margin: 0 0 6px; font-size: .92rem; }
 .footer-base { border-top: 1px solid rgba(255,255,255,.08); padding: 20px 0; }
 .footer-base p { font-size: .82rem; color: #9aaabf; margin: 0; }
-.footer-credit { display: inline-block; margin-left: 6px; opacity: .65; font-style: italic; }
+.footer-credit { margin-top: 6px !important; font-size: .72rem !important; color: #7a8aa0 !important; opacity: .75; letter-spacing: .02em; }
 
 /* ---------- RESPONSIVE ---------- */
 @media (max-width: 960px) {
