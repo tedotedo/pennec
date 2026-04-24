@@ -28,10 +28,7 @@
   if ('IntersectionObserver' in window && reveals.length) {
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('in-view');
-          io.unobserve(entry.target);
-        }
+        entry.target.classList.toggle('in-view', entry.isIntersecting);
       });
     }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
     reveals.forEach((el) => io.observe(el));
