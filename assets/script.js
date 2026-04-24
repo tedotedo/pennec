@@ -20,7 +20,7 @@
   if (y) y.textContent = new Date().getFullYear();
 
   // Hero image graceful fallback
-  const img = document.querySelector('.hero-photo img');
+  const img = document.querySelector('.hero-logo img');
   if (img) img.addEventListener('error', () => { img.style.display = 'none'; });
 
   // Scroll-triggered section reveals
