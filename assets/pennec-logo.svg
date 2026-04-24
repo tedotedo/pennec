@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 360" role="img" aria-labelledby="pennec-logo-title pennec-logo-desc">
+  <title id="pennec-logo-title">PENNEC</title>
+  <desc id="pennec-logo-desc">Paediatric Epilepsy Network for the North East and Cumbria.</desc>
+
+  <defs>
+    <style>
+      .wordmark  { font-family: "Fraunces", "Georgia", serif; font-weight: 700; letter-spacing: .01em; }
+      .tagline   { font-family: "Inter", "Segoe UI", sans-serif; font-weight: 500; letter-spacing: .02em; }
+      .ink       { fill: #0f2a44; }
+      .amber     { fill: #f4c05e; }
+      .amber-d   { fill: #d89c2e; }
+      .line      { fill: none; stroke: #1a3a5c; stroke-width: 4; stroke-linecap: round; }
+    </style>
+
+    <!-- Starburst: yellow pointy sun shape -->
+    <symbol id="starburst" viewBox="-50 -50 100 100">
+      <path class="amber"
+        d="M 0 -48
+           L 10 -18
+           L 42 -26
+           L 22 -4
+           L 48 10
+           L 16 14
+           L 26 44
+           L 0 26
+           L -26 44
+           L -16 14
+           L -48 10
+           L -22 -4
+           L -42 -26
+           L -10 -18
+           Z"/>
+      <circle class="amber-d" cx="0" cy="-4" r="14"/>
+    </symbol>
+
+    <!-- Small sparkle star (5-point style with amber fill) -->
+    <symbol id="sparkle" viewBox="-20 -20 40 40">
+      <path class="amber"
+        d="M 0 -18
+           L 4 -6
+           L 16 -6
+           L 8 2
+           L 12 14
+           L 0 6
+           L -12 14
+           L -8 2
+           L -16 -6
+           L -4 -6 Z"/>
+      <circle fill="#d89c2e" cx="0" cy="-2" r="3"/>
+    </symbol>
+  </defs>
+
+  <!-- Sun / starburst top-left -->
+  <g transform="translate(82 82)">
+    <use href="#starburst" x="-60" y="-60" width="120" height="120"/>
+  </g>
+
+  <!-- Wordmark -->
+  <text class="wordmark ink" x="172" y="148" font-size="132">PENNEC</text>
+
+  <!-- Wavy underline with sparkles -->
+  <path class="line" d="M 42 216 C 140 180, 220 250, 320 212 S 520 170, 640 214"/>
+  <g>
+    <use href="#sparkle" x="128"  y="200" width="34" height="34"/>
+    <use href="#sparkle" x="236" y="214" width="34" height="34"/>
+    <use href="#sparkle" x="344" y="198" width="34" height="34"/>
+    <use href="#sparkle" x="452" y="200" width="34" height="34"/>
+    <use href="#sparkle" x="560" y="208" width="34" height="34"/>
+  </g>
+
+  <!-- Tagline -->
+  <text class="tagline ink" x="42" y="288" font-size="26">
+    Paediatric Epilepsy Network for the North East and Cumbria
+  </text>
+</svg>
