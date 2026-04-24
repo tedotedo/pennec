@@ -139,7 +139,7 @@ h3 { font-size: 1.2rem; }
   position: relative;
   width: 100%;
   max-width: 520px;
-  aspect-ratio: 2 / 1;
+  aspect-ratio: 900 / 420;
   border-radius: var(--radius-lg);
   background: #fff;
   box-shadow: var(--shadow-md);
@@ -161,7 +161,7 @@ h3 { font-size: 1.2rem; }
   .hero-logo { max-width: 440px; padding: 24px 28px; }
 }
 @media (max-width: 640px) {
-  .hero-logo { max-width: 100%; padding: 20px 22px; aspect-ratio: 2.1 / 1; }
+  .hero-logo { max-width: 100%; padding: 20px 22px; }
   .hero-figure::after { width: 80px; height: 80px; top: -12px; right: -12px; }
 }
 .hero-figure figcaption {
@@ -236,6 +236,15 @@ h3 { font-size: 1.2rem; }
 .to-top.visible { opacity: 1; visibility: visible; transform: none; }
 .to-top:hover { background: var(--navy-700); color: var(--amber); }
 .to-top:focus-visible { outline: 3px solid var(--amber); outline-offset: 3px; }
+@media (max-width: 640px) {
+  .to-top {
+    right: 14px; bottom: 14px;
+    width: 54px; height: 54px;
+    box-shadow: 0 6px 20px rgba(15,42,68,.35);
+    border: 2px solid var(--amber);
+  }
+  .to-top svg { width: 26px; height: 26px; }
+}
 
 /* ---------- FILM BAND (cinematic hero video) ---------- */
 .film-band {

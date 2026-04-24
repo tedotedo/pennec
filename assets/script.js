@@ -43,7 +43,7 @@
   const toTop = document.getElementById('to-top');
   if (toTop) {
     const onScroll = () => {
-      if (window.scrollY > 600) toTop.classList.add('visible');
+      if (window.scrollY > 300) toTop.classList.add('visible');
       else toTop.classList.remove('visible');
     };
     window.addEventListener('scroll', onScroll, { passive: true });
