@@ -445,7 +445,7 @@ h3 { font-size: 1.2rem; }
   .nav-list.open { display: flex; }
   .nav-list li { width: 100%; }
   .nav-list a { display: block; width: 100%; }
-  .hero-stats { grid-template-columns: 1fr; max-width: 100%; }
+  .hero-stats { display: none; }
   .meetings-grid,
   .card-grid,
   .video-grid,
