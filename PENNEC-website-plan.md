@@ -63,11 +63,27 @@ First static prototype started in:
 
 - `pennec-map-mockup.html`
 
+Live GitHub Pages site:
+
+- `https://tedotedo.github.io/pennec/`
+
+GitHub repository:
+
+- `https://github.com/tedotedo/pennec`
+
+Current live checkpoint:
+
+- Date: 2026-05-09 16:15 BST
+- Branch: `main`
+- Commit: `d273b37` (`Refine scroll fade transitions`)
+
 Current implemented sections:
 
 - Responsive header and mobile menu
 - Original PENNEC logo from old local website assets
+- Large PENNEC logo that shrinks smoothly on scroll
 - Smooth hover/focus transitions and sticky header shadow
+- Subtle scroll fade-in/fade-out from the bottom
 - Mobile scroll-to-top button
 - Homepage hero
 - Desktop/mobile hero `PENNEC at a glance` panel
@@ -96,8 +112,20 @@ Links added from EPEN / related national resources:
 
 Latest verification screenshots:
 
-- `pennec-site-full-desktop.png`
-- `pennec-site-full-mobile.png`
+- `pennec-live-logo-desktop.png`
+- `pennec-live-logo-mobile.png`
+- `pennec-logo-large-desktop.png`
+- `pennec-logo-large-mobile.png`
+
+Interaction checks completed:
+
+- Mobile menu includes `Home`
+- Mobile menu closes on outside tap
+- Mobile menu closes on Escape
+- Anchor navigation offsets headings below sticky header
+- Scroll-to-top button appears after scrolling
+- Header/logo shrinks on scroll
+- Scroll reveal respects reduced-motion preferences
 
 ## Primary Audiences
 
@@ -239,7 +267,7 @@ What PENNEC does:
 
 ## Build Plan
 
-Recommended first implementation:
+First implementation completed:
 
 1. Build a static responsive website prototype.
 2. Use the current map mockup as the homepage direction.
@@ -250,6 +278,15 @@ Recommended first implementation:
 7. Populate the content from the Word document, rewritten into concise web copy.
 8. Add placeholders for meeting dates and member-only content.
 9. Test desktop and mobile screenshots before refining.
+
+Recommended next work:
+
+1. Confirm exact hospital/service labels, especially Cumbria and Northumbria.
+2. Confirm the contact email or replace the placeholder contact link.
+3. Confirm whether professional/member resources will be public or restricted.
+4. Add real meeting dates and any approved downloadable resources.
+5. Review wording with PENNEC colleagues before replacing placeholder copy.
+6. Decide whether to keep GitHub Pages URL or add a custom domain.
 
 ## Open Questions
 
