@@ -176,6 +176,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      line-height: 1;
       transition: background-color .18s ease, border-color .18s ease, transform .18s ease, box-shadow .18s ease;
       white-space: nowrap;
     }
@@ -873,12 +874,17 @@
       header {
         padding: 16px;
         min-height: 148px;
+        flex-wrap: wrap;
+        align-items: flex-start;
+        row-gap: 8px;
+        column-gap: 16px;
       }
 
       body.has-scrolled header {
         min-height: 76px;
         padding-top: 10px;
         padding-bottom: 10px;
+        align-items: center;
       }
 
       nav {
@@ -895,13 +901,18 @@
 
       .header-actions {
         gap: 8px;
+        margin-left: auto;
+        margin-top: 8px;
       }
 
       .language-toggle {
-        min-height: 40px;
-        max-width: 72px;
-        padding: 7px 8px;
+        height: 44px;
+        min-height: 44px;
+        min-width: 86px;
+        max-width: 98px;
+        padding: 0 12px 1px;
         font-size: 11px;
+        justify-content: center;
       }
 
       body.nav-open nav {
@@ -945,6 +956,7 @@
 
       .brand {
         min-width: 0;
+        flex: 1 1 100%;
       }
 
       .brand-logo {
@@ -953,6 +965,14 @@
 
       body.has-scrolled .brand-logo {
         width: min(42vw, 186px);
+      }
+
+      body.has-scrolled .brand {
+        flex: 0 1 auto;
+      }
+
+      body.has-scrolled .header-actions {
+        margin-top: 0;
       }
 
       .hero {
