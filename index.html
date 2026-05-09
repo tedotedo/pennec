@@ -94,12 +94,14 @@
       position: sticky;
       top: 0;
       z-index: 20;
-      transition: box-shadow .25s ease, background-color .25s ease;
+      transition: box-shadow .25s ease, background-color .25s ease, padding .25s ease, min-height .25s ease;
     }
 
     body.has-scrolled header {
       background: rgba(255,255,255,.94);
       box-shadow: 0 10px 30px rgba(12,72,83,.08);
+      padding-top: 10px;
+      padding-bottom: 10px;
     }
 
     .brand {
@@ -112,6 +114,11 @@
       display: block;
       width: clamp(210px, 24vw, 340px);
       height: auto;
+      transition: width .25s ease;
+    }
+
+    body.has-scrolled .brand-logo {
+      width: clamp(152px, 16vw, 230px);
     }
 
     nav {
@@ -773,7 +780,12 @@
     .reveal {
       opacity: 1;
       transform: none;
-      transition: opacity .35s ease, transform .35s ease;
+      transition: opacity .55s ease, transform .55s ease;
+    }
+
+    .js .reveal {
+      opacity: 0;
+      transform: translateY(18px);
     }
 
     .reveal.is-visible {
@@ -795,6 +807,12 @@
       header {
         padding: 16px;
         min-height: 148px;
+      }
+
+      body.has-scrolled header {
+        min-height: 76px;
+        padding-top: 10px;
+        padding-bottom: 10px;
       }
 
       nav {
@@ -854,6 +872,10 @@
 
       .brand-logo {
         width: min(72vw, 360px);
+      }
+
+      body.has-scrolled .brand-logo {
+        width: min(42vw, 186px);
       }
 
       .hero {
@@ -1276,6 +1298,8 @@
   <button class="scroll-top" type="button" aria-label="Scroll to top">↑</button>
 
   <script>
+    document.documentElement.classList.add("js");
+
     const menuButton = document.querySelector(".menu");
     const navLinks = document.querySelectorAll("nav a");
     const scrollTopButton = document.querySelector(".scroll-top");
@@ -1326,6 +1350,29 @@
     scrollTopButton.addEventListener("click", () => {
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
+
+    const revealTargets = document.querySelectorAll(".audience, .work, .section, .network-section, .contact-band");
+    const allowReveal = !window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    if (allowReveal && "IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+          entry.target.classList.add("is-visible");
+          observer.unobserve(entry.target);
+        });
+      }, { threshold: 0.08, rootMargin: "0px 0px -32px 0px" });
+
+      revealTargets.forEach(target => {
+        target.classList.add("reveal");
+        revealObserver.observe(target);
+        if (target.getBoundingClientRect().top < window.innerHeight) {
+          target.classList.add("is-visible");
+        }
+      });
+    } else {
+      revealTargets.forEach(target => target.classList.add("is-visible"));
+    }
 
     const sites = [
       {
