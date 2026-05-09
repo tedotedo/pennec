@@ -83,10 +83,11 @@
     .topline span:last-child { color: #bde9ed; }
 
     header {
-      padding: 18px clamp(18px, 4vw, 56px);
+      padding: 16px clamp(18px, 4vw, 56px);
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 24px;
       background: rgba(255,255,255,.82);
       border-bottom: 1px solid var(--line);
       backdrop-filter: blur(16px);
@@ -109,7 +110,7 @@
 
     .brand-logo {
       display: block;
-      width: clamp(132px, 14vw, 186px);
+      width: clamp(210px, 24vw, 340px);
       height: auto;
     }
 
@@ -792,7 +793,8 @@
       .topline { display: none; }
 
       header {
-        padding: 13px 16px;
+        padding: 16px;
+        min-height: 148px;
       }
 
       nav {
@@ -851,7 +853,7 @@
       }
 
       .brand-logo {
-        width: 128px;
+        width: min(72vw, 360px);
       }
 
       .hero {
