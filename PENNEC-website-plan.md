@@ -66,6 +66,7 @@ First static prototype started in:
 Current implemented sections:
 
 - Responsive header and mobile menu
+- Original PENNEC logo from old local website assets
 - Smooth hover/focus transitions and sticky header shadow
 - Mobile scroll-to-top button
 - Homepage hero
@@ -86,7 +87,11 @@ Links added from EPEN / related national resources:
 
 - OPEN UK, via RCPCH
 - Epilepsy12 audit, via RCPCH
-- Medicines for Children medicine leaflets
+- NICE epilepsy guideline NG217
+- RCPCH Epilepsy Passport
+- Healthier Together epilepsy advice
+- Epilepsy Action child epilepsy advice
+- Medicines for Children epilepsy medicines leaflet
 - EPEN as a fellow regional network reference
 
 Latest verification screenshots:
