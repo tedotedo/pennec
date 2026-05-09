@@ -26,6 +26,8 @@ Date: 2026-05-09 16:15 BST
 - Anchor links account for the sticky header
 - Subtle hover/focus transitions
 - Subtle fade-in/fade-out from the bottom as sections scroll
+- English/Urdu language toggle for public-facing content
+- Urdu mode sets `lang="ur"` and `dir="rtl"`
 - Mobile scroll-to-top button
 - Creator credit in footer: `Website created by Dr Mark Aszkenasy`
 
@@ -73,3 +75,4 @@ Trusted resource links are epilepsy-specific where possible:
 - Mobile header shrink tested.
 - Scroll-to-top behaviour tested.
 - Menu close and anchor offset tested.
+- Urdu language toggle tested, including RTL direction, translated menu labels, preserved OPEN UK link and switching back to English.

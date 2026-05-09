@@ -36,6 +36,11 @@
       letter-spacing: 0;
     }
 
+    html[dir="rtl"] body {
+      direction: rtl;
+      font-family: Tahoma, "Noto Nastaliq Urdu", "Noto Naskh Arabic", "Segoe UI", sans-serif;
+    }
+
     body.nav-open {
       overflow: hidden;
     }
@@ -97,6 +102,12 @@
       transition: box-shadow .25s ease, background-color .25s ease, padding .25s ease, min-height .25s ease;
     }
 
+    html[dir="rtl"] header,
+    html[dir="rtl"] .brand,
+    html[dir="rtl"] .menu {
+      direction: ltr;
+    }
+
     body.has-scrolled header {
       background: rgba(255,255,255,.94);
       box-shadow: 0 10px 30px rgba(12,72,83,.08);
@@ -144,6 +155,35 @@
     }
 
     .menu { display: none; }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .language-toggle {
+      border: 1px solid #afdfe4;
+      border-radius: 999px;
+      background: #fff;
+      color: var(--teal-dark);
+      cursor: pointer;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 850;
+      min-height: 38px;
+      padding: 8px 12px;
+      transition: background-color .18s ease, border-color .18s ease, transform .18s ease;
+      white-space: nowrap;
+    }
+
+    .language-toggle:hover,
+    .language-toggle:focus-visible {
+      background: var(--ice);
+      border-color: var(--teal);
+      outline: 0;
+      transform: translateY(-1px);
+    }
 
     .hero {
       padding: clamp(32px, 5vw, 74px) clamp(18px, 4vw, 56px) 28px;
@@ -441,6 +481,11 @@
       vertical-align: 1px;
     }
 
+    html[dir="rtl"] .map-list div::before {
+      margin-left: 7px;
+      margin-right: 0;
+    }
+
     .audiences {
       max-width: 1360px;
       margin: 0 auto;
@@ -689,6 +734,11 @@
       line-height: 1.45;
     }
 
+    html[dir="rtl"] .notice {
+      border-left: 0;
+      border-right: 4px solid var(--amber);
+    }
+
     .network-note {
       margin: 18px 0 0;
       max-width: 820px;
@@ -830,6 +880,15 @@
         border-radius: 8px;
         box-shadow: 0 20px 60px rgba(8,47,55,.18);
         padding: 10px;
+      }
+
+      .header-actions {
+        gap: 8px;
+      }
+
+      .language-toggle {
+        min-height: 42px;
+        padding: 8px 10px;
       }
 
       body.nav-open nav {
@@ -1020,7 +1079,10 @@
         <a href="#resources">Resources</a>
         <a href="#contact">Contact</a>
       </nav>
-      <button class="menu" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+      <div class="header-actions">
+        <button class="language-toggle" type="button" aria-label="Switch to Urdu" aria-pressed="false">اردو</button>
+        <button class="menu" type="button" aria-label="Open menu" aria-expanded="false"><span></span></button>
+      </div>
     </header>
 
     <main>
@@ -1308,6 +1370,159 @@
     const menuButton = document.querySelector(".menu");
     const navLinks = document.querySelectorAll("nav a");
     const scrollTopButton = document.querySelector(".scroll-top");
+    const languageToggle = document.querySelector(".language-toggle");
+
+    const translationsUrdu = {
+      "title": "PENNEC | شمال مشرقی انگلینڈ اور کمبریا کا بچوں کا مرگی نیٹ ورک",
+      ".topline span:first-child": "شمال مشرقی انگلینڈ اور کمبریا کا بچوں کا مرگی نیٹ ورک",
+      ".topline span:last-child": "عوامی معلومات · پیشہ ورانہ حصہ · اجلاس",
+      "nav a[href='#home']": "صفحۂ اول",
+      "nav a[href='#families']": "خاندان",
+      "nav a[href='#schools']": "اسکول",
+      "nav a[href='#professionals']": "پیشہ ور افراد",
+      "nav a[href='#meetings']": "اجلاس",
+      "nav a[href='#resources']": "وسائل",
+      "nav a[href='#contact']": "رابطہ",
+      ".kicker": "علاقائی طبی نیٹ ورک",
+      ".hero h1": "شمال مشرقی انگلینڈ اور کمبریا کا بچوں کا مرگی نیٹ ورک",
+      ".hero .lead": "مشترکہ سیکھنے، علاقائی تعاون اور بچوں اور نوجوانوں کے لیے بہتر مرگی نگہداشت۔",
+      ".actions .primary": "عوامی معلومات",
+      ".actions .secondary": "پیشہ ور افراد کا حصہ",
+      ".hero-panel-head span": "PENNEC ایک نظر میں",
+      ".hero-panel-head strong": "بچوں کی مرگی کی محفوظ اور زیادہ یکساں نگہداشت کے لیے ایک علاقائی فورم۔",
+      ".hero-stat:nth-child(1) span": "PENNEC کا پہلا اجلاس 2002 میں ونڈرمیئر میں ہوا۔",
+      ".hero-stat:nth-child(2) span": "نیٹ ورک کے نقشے پر دکھائے گئے ہسپتال اور سروس مقامات۔",
+      ".hero-stat:nth-child(3) span": "برطانیہ میں بچوں کے مرگی نیٹ ورکس کی تنظیم OPEN UK سے منسلک۔",
+      ".audience:nth-child(1) h3": "خاندان اور نوجوان",
+      ".audience:nth-child(1) p": "قابل اعتماد رہنمائی، مستند وسائل کے روابط، اور مقامی مرگی نگہداشت کے بارے میں معلومات۔",
+      ".audience:nth-child(2) h3": "اسکول اور کمیونٹی",
+      ".audience:nth-child(2) p": "بچوں اور نوجوانوں کے گرد محفوظ اور مربوط دیکھ بھال کے لیے عملی مدد۔",
+      ".audience:nth-child(3) h3": "پیشہ ور افراد اور ارکان",
+      ".audience:nth-child(3) p": "اجلاس، طبی وسائل، تعلیم، سروس اپ ڈیٹس اور معیار میں بہتری کا کام۔",
+      ".work h2": "PENNEC کیا کرتا ہے",
+      ".work-item:nth-child(1) strong": "تعلیم",
+      ".work-item:nth-child(1) span": "سال میں دو بار سیکھنے کے اجلاس اور مشترکہ طبی مہارت۔",
+      ".work-item:nth-child(2) strong": "مشترکہ معیار",
+      ".work-item:nth-child(2) span": "علاقائی راستے، دیکھ بھال کے پیکج اور خدمات میں یکسانیت۔",
+      ".work-item:nth-child(3) strong": "معیار میں بہتری",
+      ".work-item:nth-child(3) span": "آڈٹ، Epilepsy12 سے سیکھنا اور عملی سروس ڈیولپمنٹ۔",
+      ".work-item:nth-child(4) strong": "تعاون",
+      ".work-item:nth-child(4) span": "طبی عملہ، نرسیں، کمشنرز، خیراتی ادارے اور شراکت دار نیٹ ورکس۔",
+      "#families h2": "خاندان اور نوجوان",
+      "#families .section-lead": "مرگی سے متاثر بچوں، نوجوانوں، والدین اور دیکھ بھال کرنے والوں کے لیے صاف اور قابل اعتماد معلومات۔",
+      "#families .info-card:nth-child(1) h3": "مرگی کو سمجھنا",
+      "#families .info-card:nth-child(1) p": "دوروں، مرگی کی دیکھ بھال، کلینکس اور علاقے میں دستیاب مدد کے بارے میں سادہ معلومات۔",
+      "#families .info-card:nth-child(2) h3": "حفاظت اور ابتدائی مدد",
+      "#families .info-card:nth-child(2) p": "دورے کے وقت ابتدائی مدد، حفاظتی منصوبہ بندی اور فوری مدد کب لینی ہے اس بارے میں عملی رہنمائی۔",
+      "#families .info-card:nth-child(3) h3": "مقامی راستے",
+      "#families .info-card:nth-child(3) p": "شمال مشرقی انگلینڈ اور کمبریا کے ہسپتالوں میں بچوں کی مرگی کی خدمات کیسے کام کرتی ہیں۔",
+      "#families .info-card:nth-child(4) h3": "قابل اعتماد مدد",
+      "#families .info-card:nth-child(4) p": "Healthier Together، Epilepsy Action، NICE، RCPCH اور دیگر مستند مشوروں کے روابط۔",
+      "#schools h2": "اسکول اور کمیونٹی",
+      "#schools .section-lead": "روزمرہ ماحول میں بچوں اور نوجوانوں کے گرد محفوظ اور مربوط دیکھ بھال کے لیے مدد۔",
+      "#schools .info-card:nth-child(1) h3": "اسکول کی مدد",
+      "#schools .info-card:nth-child(1) p": "مرگی والے شاگردوں کی مدد کرنے والی اسکول ٹیموں کے لیے وسائل، بشمول دیکھ بھال کی منصوبہ بندی اور آگاہی۔",
+      "#schools .info-card:nth-child(2) h3": "ہنگامی منصوبے",
+      "#schools .info-card:nth-child(2) p": "علاقائی نمونوں، ریسکیو دوا کی رہنمائی اور ضرورت پڑنے پر اگلے قدم کے مشورے کے لیے جگہ۔",
+      "#schools .info-card:nth-child(3) h3": "کمیونٹی شراکت دار",
+      "#schools .info-card:nth-child(3) p": "بچوں، نوجوانوں اور خاندانوں کے ساتھ کام کرنے والی وسیع تر خدمات کے لیے معلومات۔",
+      "#schools .info-card:nth-child(4) h3": "تربیتی روابط",
+      "#schools .info-card:nth-child(4) p": "تعلیمی وسائل، ڈاؤن لوڈز اور تجویز کردہ بیرونی سیکھنے کے مواد کے لیے جگہ۔",
+      "#professionals h2": "پیشہ ور افراد اور ارکان",
+      "#professionals .section-lead": "مشترکہ سیکھنے، طبی تعاون، سروس میں بہتری اور پیشہ ورانہ ترقی کے لیے ایک علاقائی پلیٹ فارم۔",
+      "#professionals .info-card:nth-child(1) h3": "تعلیم",
+      "#professionals .info-card:nth-child(1) p": "طبی عملے اور مرگی اسپیشلسٹ نرسوں کے لیے اجلاس، تدریسی نشستیں اور پیشہ ورانہ ترقی۔",
+      "#professionals .info-card:nth-child(2) h3": "معیار میں بہتری",
+      "#professionals .info-card:nth-child(2) p": "علاقائی سروس جائزہ، Epilepsy12 سے سیکھنا، دیکھ بھال کے پیکج اور عملی بہتری۔",
+      "#professionals .info-card:nth-child(3) h3": "PENNEC Alliance",
+      "#professionals .info-card:nth-child(3) p": "کمشنرز، خیراتی اداروں، غیر طبی شراکت داروں اور پارٹنر نیٹ ورکس کے ساتھ تعاون۔",
+      "#professionals .info-card:nth-child(4) h3": "ارکان کا حصہ",
+      "#professionals .info-card:nth-child(4) p": "اگر بعد میں لاگ اِن درکار ہو تو محدود رہنمائی، اجلاس کے کاغذات، پریزنٹیشنز اور سروس اپ ڈیٹس کے لیے جگہ۔",
+      ".network-section .section-intro h2": "ہمارا نیٹ ورک",
+      ".network-section .section-intro > p:first-of-type": "شمال مشرقی انگلینڈ اور کمبریا میں بچوں اور نوجوانوں کی مرگی نگہداشت کے لیے مل کر کام کرنے والے ہسپتال اور سروس مقامات۔",
+      ".map-head h2": "نیٹ ورک کے ہسپتال اور سروس مقامات",
+      ".map-head p": "PENNEC کے ہسپتال اور سروس مقامات پورے علاقے میں۔",
+      ".map-head .badge": "نیٹ ورک نقشہ",
+      "#about h2": "PENNEC کے بارے میں",
+      "#about .section-lead": "PENNEC برطانیہ میں قائم ہونے والے ابتدائی بچوں کے مرگی نیٹ ورکس میں سے ایک ہے۔",
+      "#about .timeline-card:nth-child(1) h3": "تعاون کے لیے قائم",
+      "#about .timeline-card:nth-child(1) p": "یہ نیٹ ورک بچوں کی مرگی کی دیکھ بھال میں شامل پیڈیاٹرک نیورولوجسٹ، پیڈیاٹریشنز، مرگی نرسوں اور صحت کے عملے کو اکٹھا کرنے کے لیے قائم کیا گیا۔",
+      "#about .timeline-card:nth-child(2) h3": "ونڈرمیئر، 2002",
+      "#about .timeline-card:nth-child(2) p": "PENNEC کا پہلا اجلاس 2002 میں ونڈرمیئر میں ہوا، جس کے بعد علاقے بھر میں باقاعدہ دو سالانہ اجلاس جاری رہے۔",
+      "#about .timeline-card:nth-child(3) h3": "گورننس",
+      "#about .timeline-card:nth-child(3) p": "PENNEC ایک تحریری دستور کے تحت کام کرتا ہے اور ایک ورکنگ کمیٹی اس کی رہنمائی کرتی ہے، جس میں چیئر، تعلیم و تربیت لیڈ اور خزانچی شامل ہیں۔",
+      "#about .timeline-card:nth-child(4) h3": "شراکت داری",
+      "#about .timeline-card:nth-child(4) p": "نیٹ ورک علاقائی خدمات، Child Health and Wellbeing Network، Healthier Together اور قومی بچوں کے مرگی نیٹ ورکس کے ساتھ کام کرتا ہے۔",
+      "#meetings h2": "اجلاس اور اپ ڈیٹس",
+      "#meetings .section-lead": "آنے والے PENNEC اجلاس، تعلیمی نشستیں، ایجنڈے، منٹس اور نیٹ ورک خبریں۔",
+      ".date-card span": "اگلا اجلاس",
+      ".date-card strong": "تاریخ کی تصدیق باقی ہے",
+      "#meetings .info-card h3": "اجلاس کے وسائل",
+      "#meetings .info-card p": "آئندہ ورژن میں ایجنڈے، منٹس، پریزنٹیشن روابط، رجسٹریشن تفصیلات اور ارکان کے لیے اپ ڈیٹس شامل کی جا سکتی ہیں۔",
+      "#resources h2": "قابل اعتماد وسائل",
+      "#resources .section-lead": "خاندانوں، اسکولوں اور پیشہ ور افراد کے لیے بیرونی رہنمائی اور مدد۔",
+      "#resources .resource-card:nth-child(1) p": "شمال مشرقی انگلینڈ اور کمبریا میں بچوں، نوجوانوں، والدین اور دیکھ بھال کرنے والوں کے لیے علاقائی مرگی مشورہ۔",
+      "#resources .resource-card:nth-child(1) a": "Healthier Together مرگی مشورہ دیکھیں",
+      "#resources .resource-card:nth-child(2) p": "مرگی والے بچے کی مدد کرنے والے والدین، دیکھ بھال کرنے والوں اور خاندانوں کے لیے معلومات اور مدد۔",
+      "#resources .resource-card:nth-child(2) a": "Epilepsy Action بچے کی مرگی کا مشورہ دیکھیں",
+      "#resources .resource-card:nth-child(3) p": "NG217 رہنمائی: بچوں، نوجوانوں اور بڑوں میں مرگی کی تشخیص اور علاج۔",
+      "#resources .resource-card:nth-child(3) a": "NICE مرگی رہنمائی دیکھیں",
+      "#resources .resource-card:nth-child(4) p": "مرگی والے بچوں اور نوجوانوں کے لیے ڈاؤن لوڈ ہونے والا ریکارڈ، جس میں care plans، ادویات اور اہم رابطے شامل ہیں۔",
+      "#resources .resource-card:nth-child(4) a": "RCPCH Epilepsy Passport دیکھیں",
+      "#resources .resource-card:nth-child(5) p": "برطانیہ میں علاقائی بچوں کے مرگی نیٹ ورکس کو جوڑنے والی تنظیم، جس میں PENNEC بھی شامل ہے۔",
+      "#resources .resource-card:nth-child(5) a": "OPEN UK دیکھیں",
+      "#resources .resource-card:nth-child(6) p": "دوروں اور مرگی والے بچوں اور نوجوانوں کی دیکھ بھال کو بہتر بنانے کے لیے قومی طبی آڈٹ وسائل۔",
+      "#resources .resource-card:nth-child(6) a": "Epilepsy12 دیکھیں",
+      "#resources .resource-card:nth-child(7) p": "بچپن کی مرگی میں استعمال ہونے والی anti-seizure ادویات کے بارے میں والدین اور دیکھ بھال کرنے والوں کے لیے معلومات۔",
+      "#resources .resource-card:nth-child(7) a": "مرگی کی ادویات کا leaflet کھولیں",
+      "#resources .resource-card:nth-child(8) p": "ایک دوسرا علاقائی بچوں کا مرگی نیٹ ورک اور نیٹ ورک ساخت و پیشہ ورانہ وسائل کے لیے مفید حوالہ۔",
+      "#resources .resource-card:nth-child(8) a": "EPEN دیکھیں",
+      "#contact h2": "PENNEC سے رابطہ",
+      "#contact p": "نیٹ ورک enquiries، اجلاس کی معلومات اور پیشہ ورانہ تعاون کے لیے اس حصے کو استعمال کریں۔ فوری طبی تشویش کے لیے ہمیشہ مقامی NHS urgent care راستوں پر عمل کریں۔",
+      "#contact .btn": "نیٹ ورک کو ای میل کریں",
+      "footer .footer-inner span:nth-child(1)": "کاپی رائٹ © 2026 شمال مشرقی انگلینڈ اور کمبریا کا بچوں کا مرگی نیٹ ورک",
+      "footer .footer-inner span:nth-child(2)": "برطانیہ کی بچوں کی مرگی نیٹ ورک کمیونٹی کا حصہ",
+      "footer .creator-credit": "ویب سائٹ Dr Mark Aszkenasy نے بنائی"
+    };
+
+    const translatableSelectors = Object.keys(translationsUrdu).filter(selector => selector !== "title");
+    const networkNote = document.querySelector(".network-note");
+    networkNote.dataset.enHtml = networkNote.innerHTML;
+
+    translatableSelectors.forEach(selector => {
+      document.querySelectorAll(selector).forEach(element => {
+        element.dataset.en = element.textContent;
+      });
+    });
+
+    const setLanguage = language => {
+      const isUrdu = language === "ur";
+      document.documentElement.lang = isUrdu ? "ur" : "en";
+      document.documentElement.dir = isUrdu ? "rtl" : "ltr";
+      document.title = isUrdu ? translationsUrdu.title : "PENNEC | Paediatric Epilepsy Network for the North East and Cumbria";
+
+      translatableSelectors.forEach(selector => {
+        document.querySelectorAll(selector).forEach(element => {
+          element.textContent = isUrdu ? translationsUrdu[selector] : element.dataset.en;
+        });
+      });
+
+      networkNote.innerHTML = isUrdu
+        ? 'PENNEC برطانیہ میں بچوں کے مرگی نیٹ ورکس کی تنظیم <a class="inline-link" href="https://www.rcpch.ac.uk/resources/open-uk-organisation-paediatric-epilepsy-networks-uk" target="_blank" rel="noreferrer">OPEN UK</a> کا حصہ ہے۔'
+        : networkNote.dataset.enHtml;
+
+      languageToggle.textContent = isUrdu ? "English" : "اردو";
+      languageToggle.setAttribute("aria-label", isUrdu ? "Switch to English" : "Switch to Urdu");
+      languageToggle.setAttribute("aria-pressed", String(isUrdu));
+      localStorage.setItem("pennec-language", language);
+    };
+
+    languageToggle.addEventListener("click", () => {
+      const nextLanguage = document.documentElement.lang === "ur" ? "en" : "ur";
+      setLanguage(nextLanguage);
+    });
+
+    setLanguage(localStorage.getItem("pennec-language") === "ur" ? "ur" : "en");
 
     menuButton.addEventListener("click", () => {
       const isOpen = document.body.classList.toggle("nav-open");

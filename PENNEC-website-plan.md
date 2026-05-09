@@ -84,6 +84,8 @@ Current implemented sections:
 - Large PENNEC logo that shrinks smoothly on scroll
 - Smooth hover/focus transitions and sticky header shadow
 - Subtle scroll fade-in/fade-out from the bottom
+- English/Urdu language toggle for public-facing content
+- Urdu mode uses `lang="ur"` and right-to-left layout
 - Mobile scroll-to-top button
 - Homepage hero
 - Desktop/mobile hero `PENNEC at a glance` panel
@@ -126,6 +128,7 @@ Interaction checks completed:
 - Scroll-to-top button appears after scrolling
 - Header/logo shrinks on scroll
 - Scroll reveal respects reduced-motion preferences
+- Urdu toggle switches text, direction, document language and persists choice in local storage
 
 ## Primary Audiences
 
